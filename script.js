@@ -68,6 +68,7 @@ function calculate() {
       return;
   }
 
+
   currentInput = String(result);
   previousValue = null;
   operator = null;
@@ -75,6 +76,61 @@ function calculate() {
   updateDisplay();
 }
 
+function celebrate() {
+    const container = document.getElementById("celebration");
+    for (let burst = 0; burst < 5; burst++) {
+
+        const centerX = Math.random() * window.innerWidth;
+        const centerY = Math.random() * window.innerHeight * 0.7;
+
+        for (let i = 0; i < 30; i++) {
+
+            const particle = document.createElement("div");
+
+            particle.classList.add("particle");
+
+            particle.style.left = centerX + "px";
+            particle.style.top = centerY + "px";
+
+            const angle = Math.random() * Math.PI * 2;
+            const distance = 80 + Math.random() * 150;
+
+            particle.style.setProperty(
+                "--x",
+                Math.cos(angle) * distance + "px"
+            );
+
+            particle.style.setProperty(
+                "--y",
+                Math.sin(angle) * distance + "px"
+            );
+
+            particle.style.background =
+                colors[Math.floor(Math.random() * colors.length)];
+
+            container.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 800);
+        }
+    }
+    celebrate();
+}
+
+
+    const colors = [
+        "#ff0000",
+        "#00ff00",
+        "#ffff00",
+        "#00ffff",
+        "#ff00ff",
+        "#ff8800"
+
+    ];
+
+    // Create several bursts
+    
 function deleteLastDigit() {
   if (shouldResetDisplay) {
     currentInput = '0';
